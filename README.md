@@ -1,4 +1,4 @@
-[![Docker Build](https://github.com/ai-dock/base-image/actions/workflows/docker-build.yml/badge.svg)](https://github.com/ai-dock/base-image/actions/workflows/docker-build.yml)
+[![Docker Build](https://github.com/MomentFactory/ai-dock-base-image/actions/workflows/docker-build.yml/badge.svg)](https://github.com/MomentFactory/ai-dock-base-image/actions/workflows/docker-build.yml)
 
 # Base Image
 
@@ -32,7 +32,7 @@ ROCm builds are experimental. Please give feedback.
 ##### _CPU_
 `:v2-cpu-[ubuntu-version]`
 
-Browse [here](https://github.com/ai-dock/base-image/pkgs/container/base-image) for an image suitable for your target environment.
+Browse [here](https://github.com/MomentFactory/ai-dock-base-image/pkgs/container/base-image) for an image suitable for your target environment.
 
 ---
 
