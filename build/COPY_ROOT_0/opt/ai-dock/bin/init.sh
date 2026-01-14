@@ -243,6 +243,15 @@ function init_create_user() {
         home_dir=/home/${USER_NAME}
         mkdir -p ${home_dir}
     fi
+
+    # Supprimer l'utilisateur 'ubuntu' s'il existe pour libérer l'UID/GID 1000
+    if getent passwd ubuntu >/dev/null; then
+        userdel -r ubuntu
+    fi
+    if getent group ubuntu >/dev/null; then
+        groupdel ubuntu
+    fi
+
     chown ${WORKSPACE_UID}:${WORKSPACE_GID} "$home_dir"
     chmod g+s "$home_dir"
     groupadd -g $WORKSPACE_GID $USER_NAME
