@@ -244,7 +244,7 @@ function init_create_user() {
         mkdir -p ${home_dir}
     fi
 
-    # Supprimer l'utilisateur 'ubuntu' s'il existe pour libérer l'UID/GID 1000
+    # Delete used 'ubuntu' if it exists to free up UID/GID 1000
     if getent passwd ubuntu >/dev/null; then
         userdel -r ubuntu
     fi
