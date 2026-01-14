@@ -35,11 +35,11 @@ function fix_container() {
 function fix_workspace() {
     if [[ $WORKSPACE_MOUNTED == "true" && $WORKSPACE_PERMISSIONS != "false" ]]; then
         printf "Fixing workspace permissions...\n"
-        chown "${WORKSPACE_UID}.${WORKSPACE_GID}" "${WORKSPACE}"
+        chown "${WORKSPACE_UID}:${WORKSPACE_GID}" "${WORKSPACE}"
         chmod g+w "${WORKSPACE}"
         chmod g+s "${WORKSPACE}"
         find "${WORKSPACE}" -type d ! -perm -g=s -exec chmod g+s {} \;
-        find "${WORKSPACE}" ! -uid "${WORKSPACE_UID}" -exec chown "${WORKSPACE_UID}.${WORKSPACE_GID}" {} \;
+        find "${WORKSPACE}" ! -uid "${WORKSPACE_UID}" -exec chown "${WORKSPACE_UID}:${WORKSPACE_GID}" {} \;
         chmod o-rw "${WORKSPACE}/home/${USER_NAME}"
         if [[ -e ${WORKSPACE}/home/user/.ssh/authorized_keys ]]; then
             chmod 700 "${WORKSPACE}/home/${USER_NAME}/.ssh"

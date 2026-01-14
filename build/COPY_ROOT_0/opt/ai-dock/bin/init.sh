@@ -183,12 +183,12 @@ function init_set_workspace() {
     
     WORKSPACE_UID=$(stat -c '%u' "$WORKSPACE")
     if [[ $WORKSPACE_UID -eq 0 ]]; then
-        WORKSPACE_UID=1001
+        WORKSPACE_UID=1000
     fi
     export WORKSPACE_UID
     WORKSPACE_GID=$(stat -c '%g' "$WORKSPACE")
     if [[ $WORKSPACE_GID -eq 0 ]]; then
-        WORKSPACE_GID=1001
+        WORKSPACE_GID=1000
     fi
     export WORKSPACE_GID
     
@@ -198,7 +198,7 @@ function init_set_workspace() {
 
     if [[ $WORKSPACE != "/opt/" ]]; then
         mkdir -p "${WORKSPACE}"
-        chown ${WORKSPACE_UID}.${WORKSPACE_GID} "${WORKSPACE}"
+        chown ${WORKSPACE_UID}:${WORKSPACE_GID} "${WORKSPACE}"
         chmod g+s "${WORKSPACE}"
     fi
     
@@ -223,7 +223,7 @@ function init_set_workspace() {
     if [[ $WORKSPACE_MOUNTED == "true" ]]; then
         test_file=${WORKSPACE}/.ai-dock-permissions-test
         touch $test_file
-        if chown ${WORKSPACE_UID}.${WORKSPACE_GID} $test_file > /dev/null 2>&1; then
+        if chown ${WORKSPACE_UID}:${WORKSPACE_GID} $test_file > /dev/null 2>&1; then
             export WORKSPACE_PERMISSIONS=true
         else 
             export WORKSPACE_PERMISSIONS=false
@@ -243,7 +243,7 @@ function init_create_user() {
         home_dir=/home/${USER_NAME}
         mkdir -p ${home_dir}
     fi
-    chown ${WORKSPACE_UID}.${WORKSPACE_GID} "$home_dir"
+    chown ${WORKSPACE_UID}:${WORKSPACE_GID} "$home_dir"
     chmod g+s "$home_dir"
     groupadd -g $WORKSPACE_GID $USER_NAME
     useradd -ms /bin/bash $USER_NAME -d $home_dir -u $WORKSPACE_UID -g $WORKSPACE_GID
