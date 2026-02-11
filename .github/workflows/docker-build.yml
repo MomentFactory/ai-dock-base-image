@@ -63,7 +63,7 @@ jobs:
         run: |
           img_path_ghcr="ghcr.io/${{ env.REPO_NAMESPACE }}/${{ env.REPO_NAME }}"
           img_path_dhub="${{ secrets.DOCKERHUB_USER }}/${{ env.REPO_NAME }}"
-          base_tag="v2-cpu-${{ env.UBUNTU_VERSION }}"
+          base_tag="v2-cpu-ubuntu${{ env.UBUNTU_VERSION }}"
 
           # Primary tags (GHCR)
           TAGS="${img_path_ghcr}:${base_tag}"
@@ -99,6 +99,9 @@ jobs:
       fail-fast: false
       matrix:
         build:
+        - {latest: "false", cuda: "12.8.1-base"}
+        - {latest: "false", cuda: "12.8.1-runtime"}
+        - {latest: "false", cuda: "12.8.1-devel"}
         - {latest: "false", cuda: "12.9.1-base"}
         - {latest: "false", cuda: "12.9.1-runtime"}
         - {latest: "false", cuda: "12.9.1-devel"}
