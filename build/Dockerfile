@@ -1,4 +1,4 @@
-ARG IMAGE_BASE="nvidia/cuda:12.9.1-base-ubuntu24.04"
+ARG IMAGE_BASE="nvidia/cuda:13.0.2-base-ubuntu24.04"
 
 # Caddy build
 FROM ubuntu:24.04 AS caddybuilder
@@ -34,7 +34,7 @@ COPY --from=caddybuilder /opt/caddy/ /opt/caddy/
 ARG XPU_TARGET="GPU_NVIDIA" # GPU_AMD, CPU
 ENV XPU_TARGET=${XPU_TARGET}
 
-ARG NODE_VERSION=v22.2.0
+ARG NODE_VERSION=v22.22.0
 ENV NODE_VERSION=${NODE_VERSION}
 
 LABEL org.opencontainers.image.source https://github.com//MomentFactory/ai-dock-base-image
